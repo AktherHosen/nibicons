@@ -2,6 +2,10 @@
 
 A Next.js site for browsing, copying, and installing the Nibicons icon set.
 
+Live site: https://nibicons.vercel.app/
+
+React package: https://www.npmjs.com/package/nibicons
+
 ## What's dynamic here (vs. the old single HTML file)
 
 - **Every icon has its own page** at `/icons/[name]` (e.g. `/icons/home`), each with its own
@@ -26,7 +30,7 @@ app/
 components/
   Header.js, Footer.js, Hero.js    static pieces
   IconBrowser.js                   client component: search + filter + copy
-  InstallSection.js                client component: npm/yarn/pnpm/cdn tabs
+  InstallSection.js                client component: npm/yarn/pnpm install tabs
   UsageSection.js, CopyButton.js   usage snippets + reusable copy button
 data/
   icons.js            <- single source of truth for every icon
@@ -56,17 +60,17 @@ npm run dev
 
 Visit `http://localhost:3000`.
 
-## Before you deploy
+## Site URL configuration
 
-Set the `NEXT_PUBLIC_SITE_URL` environment variable to your real production URL (used in the
-sitemap and Open Graph metadata). Locally or in Vercel's project settings:
+The production site uses `https://nibicons.vercel.app` by default. If you connect a custom domain,
+set the `NEXT_PUBLIC_SITE_URL` environment variable in Vercel's project settings. It is used in
+the sitemap and Open Graph metadata:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
-If you skip this, it falls back to `https://nibicons.vercel.app`, which won't match your real
-domain once deployed.
+If you keep the Vercel domain, no environment variable is required.
 
 ## Deploying to Vercel
 
@@ -77,19 +81,21 @@ domain once deployed.
    the first deploy.
 4. Deploy. Every push to your main branch redeploys automatically.
 
-Once it's live, submit `https://your-domain.com/sitemap.xml` in Google Search Console to speed
-up indexing of the icon pages.
+The live sitemap is available at https://nibicons.vercel.app/sitemap.xml.
 
-## Publishing the npm package
+## Published npm package
 
-The public React package lives in `package/`, separate from this Next.js website. From the
-repository root:
+The React icon package is published publicly. Users can install it with:
 
 ```bash
-cd package
-npm login
-npm publish --access public
+npm install nibicons
 ```
 
-After publishing, users can install it with `npm install nibicons`. Increase the version with
-`npm version patch`, `npm version minor`, or `npm version major` before publishing updates.
+Use the components like this:
+
+```jsx
+import { Home, Search } from 'nibicons';
+
+<Home size={20} />
+<Search size={20} />
+```
