@@ -1,0 +1,23 @@
+{
+  "name": "nibicons",
+  "version": "1.0.0",
+  "description": "A small, clean React icon library.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "keywords": [
+    "icons",
+    "react",
+    "svg"
+  ],
+  "license": "MIT"
+}
